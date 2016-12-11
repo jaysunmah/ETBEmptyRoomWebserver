@@ -1,0 +1,55 @@
+<template name="landing">
+  <div id="parent" style="height: 100vh;">
+  <div id="child">
+
+  <div class="ui stackable grid container">
+    <div class="row">
+      <div class="twelve wide column">
+        <div class="ui segment">
+          <div id="sketch1"></div>
+        </div>
+      </div>
+      <div class="four wide column" style="height: 80vh;" id="sidebarContainer">
+				<div class="ui top attached pointing menu">
+					<a class="active item" id="selectArtifacts">
+						Artifacts
+					</a>
+					<a class="item" id="selectClues">
+						Clues
+					</a>
+				</div>
+        <div class="ui bottom attached segment" style="height: 99%;">
+          <div class="ui stackable grid">
+						{{#if itemSelect}}
+							<div class="four wide column">
+								<img class="ui small image" src="/images/couch.jpg">
+							</div>
+							<div class="four wide column">
+								<img class="ui small image" src="/images/couch.jpg">
+							</div>
+							<div class="four wide column">
+								<img class="ui small image" src="/images/couch.jpg">
+							</div>
+							<div class="four wide column">
+								<img class="ui small image" src="/images/couch.jpg">
+							</div>
+							<div class="four wide column">
+								<img class="ui small image" src="/images/couch.jpg">
+							</div>
+							<div class="four wide column">
+								<img class="ui small image" src="/images/couch.jpg">
+							</div>
+						{{else}}
+							 <div class="four wide column">
+								<img class="ui small image" src="/images/couch.jpg">
+							</div>
+						{{/if}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    </div>
+    </div>
+  </div>
+</template>

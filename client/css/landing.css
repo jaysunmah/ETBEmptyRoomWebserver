@@ -1,0 +1,25 @@
+body {
+  background-image:url('images/landing.png');
+background-repeat:no-repeat;
+-webkit-background-size:cover;
+-moz-background-size:cover;
+-o-background-size:cover;
+background-size:cover;
+background-position:center;
+}
+
+#parent {
+  position: relative;
+}
+
+#child {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.ui.menu .item {
+	width: 50% !important;
+	text-align: center;
+}
