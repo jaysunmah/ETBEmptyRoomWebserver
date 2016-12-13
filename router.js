@@ -13,6 +13,9 @@ var room1Correct = false;
 var room2Done = false;
 var room2Correct = false;
 
+var room1PrevPing = 0;
+var room2PrevPing = 0;
+
 function getGameState() {
 	var result = 0;
 	if (playMusic) {
@@ -62,6 +65,11 @@ Router.route("/room1", {where: "server"})
 
     this.response.statusCode = 200;
 		var result = getGameState();
+		room1PrevPing = Date.now();
+		if (Date.now() - room2PrevPing > 1000) {
+			console.log("room2 not connected");
+			result = "0";
+		}
 		this.response.end(result);
 
   });
@@ -98,6 +106,11 @@ Router.route("/room2", {where: "server"})
 
     this.response.statusCode = 200;
 		var result = getGameState();
+		room2PrevPing = Date.now();
+		if (Date.now() - room1PrevPing > 1000) {
+			console.log("room1 not connected");
+			result = "0";
+		}
 		this.response.end(result);
   });
 
