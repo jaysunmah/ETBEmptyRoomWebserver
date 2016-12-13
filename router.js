@@ -16,6 +16,42 @@ var room2Correct = false;
 var room1PrevPing = 0;
 var room2PrevPing = 0;
 
+function wei () {
+		var room1Connect = false;
+		var room2Connect = false;
+		var setFalse = false;
+
+		if ((Date.now() - room1PrevPing) < 1000) {
+			room1Connect = true;
+		} else {
+			setFalse = true;
+		}
+		if ((Date.now() - room2PrevPing) < 1000) {
+			room2Connect = true;
+		} else {
+			setFalse = true;
+		}
+
+		if (setFalse) {
+			playMusic = false;
+			lookPainting = false;
+			room1Done = false;
+			room2Done = false;
+			room1Correct = false;
+			room2Correct = false;
+		}
+	
+		console.log("");
+		console.log("Room1 connected: " + room1Connect + ", Room2 connected: " + room2Connect);
+		console.log("playing music: " + playMusic + " , looking at painting: " + lookPainting);
+		console.log("room1 done: " + room1Done + " , room2 done: " + room2Done);
+		console.log("room1 correct: " + room1Correct + " , room2 correct: " + room2Correct);
+		console.log("");
+}
+
+
+setInterval(wei, 1000);
+
 function getGameState() {
 	var result = 0;
 	if (playMusic) {
@@ -30,7 +66,6 @@ function getGameState() {
 			result = result | 8; //0x1000
 		}
 	}
-	
 
 	return result.toString();
 }
@@ -67,7 +102,6 @@ Router.route("/room1", {where: "server"})
 		var result = getGameState();
 		room1PrevPing = Date.now();
 		if (Date.now() - room2PrevPing > 1000) {
-			console.log("room2 not connected");
 			result = "0";
 		}
 		this.response.end(result);
@@ -100,15 +134,11 @@ Router.route("/room2", {where: "server"})
 			room2Correct = false;
 		}
 
-		console.log("playing music: " + playMusic + " , looking at painting: " + lookPainting);
-		console.log("room1 done: " + room1Done + " , room2 done: " + room2Done);
-		console.log("room1 correct: " + room1Correct + " , room2 correct: " + room2Correct);
 
     this.response.statusCode = 200;
 		var result = getGameState();
 		room2PrevPing = Date.now();
 		if (Date.now() - room1PrevPing > 1000) {
-			console.log("room1 not connected");
 			result = "0";
 		}
 		this.response.end(result);
