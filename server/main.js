@@ -18,3 +18,10 @@ Meteor.methods({
     }
 });
 
+function ping() {
+	HTTP.get("https://sheltered-refuge-14380.herokuapp.com/");
+	console.log("Pinged!");
+}
+
+Meteor.setInterval(ping, 10000);
+
